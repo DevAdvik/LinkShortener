@@ -7,21 +7,21 @@
 // }).listen(7890);
 
 
-const express = require('express');
-const app = express();
+// const express = require('express');
+// const app = express();
 
-app.get('/', function (req, res) {
-    res.send("I'm here!");
-})
+// app.get('/', function (req, res) {
+//     res.send("I'm here!");
+// })
 
-app.get('/:url', function (req, res) {
-    let shortUrl = req.params.url;
-    res.send("The short url is: " + shortUrl);
-})
+// app.get('/:url', function (req, res) {
+//     let shortUrl = req.params.url;
+//     res.send("The short url is: " + shortUrl);
+// })
 
-app.listen(7890, function (req, res) {
-    console.log("Server is running....");
-});
+// app.listen(7890, function (req, res) {
+//     console.log("Server is running....");
+// });
 
-// console.log(module);
-// console.log(process);
+const os = require('os');
+console.log(os.version());
