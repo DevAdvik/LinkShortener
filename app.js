@@ -1,5 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
+
 const hashIt = require("./hashing");
 const redirect = require("./routes/redirect");
 const app = express();
@@ -12,17 +13,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Routes
-app.use("*", redirect);
 
 app.get('/', (req, res) => {
     res.status(200).json({success: true, data: "empty"});
 })
 
-console.log(hashIt("test"));
+app.use("*", redirect);
+
+// console.log(hashIt("test"));
 
 
 app.listen(PORT, () => {
-    console.log("Server running on port 5000....");
+    console.log(`Server running on port ${PORT}....`);
 })
 
 
