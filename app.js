@@ -1,27 +1,64 @@
-// let http = require('http');
+const express = require("express");
+const dotenv = require("dotenv");
+const hashIt = require("./hashing");
+const redirect = require("./routes/redirect");
+const app = express();
+
+dotenv.config({ path: './.env' })
+const PORT = process.env.PORT;
+
+//Middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+// Routes
+app.use("*", redirect);
+
+app.get('/', (req, res) => {
+    res.status(200).json({success: true, data: "empty"});
+})
+
+console.log(hashIt("test"));
 
 
-// http.createServer(function (req, res) {
-//     res.writeHead(200, { 'Content-Type': 'text/html' });
-//     res.end("First node js server!");
-// }).listen(7890);
+app.listen(PORT, () => {
+    console.log("Server running on port 5000....");
+})
 
 
-// const express = require('express');
-// const app = express();
 
-// app.get('/', function (req, res) {
-//     res.send("I'm here!");
-// })
 
-// app.get('/:url', function (req, res) {
-//     let shortUrl = req.params.url;
-//     res.send("The short url is: " + shortUrl);
-// })
 
-// app.listen(7890, function (req, res) {
-//     console.log("Server is running....");
-// });
 
-const os = require('os');
-console.log(os.version());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const supabase = createClient("https://kidmlezzyxdsnnwhyplp.supabase.co", process.env.SUPABASEAPI);
+
+// const fetchUrl = async (short_url) => {
+//     const { data, error } = await supabase
+//         .from("shortlinks")
+//         .select("*")
+//         .eq("short_url", short_url)
+//     console.log(data);
+//     if (data.length) {
+//         console.log("yes");
+//     } else {
+//         console.log("no");
+//     }
+// }
+// fetchUrl("test");
