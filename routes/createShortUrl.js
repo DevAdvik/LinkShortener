@@ -11,6 +11,9 @@ router.get("/", async (req, res) => {
     let hashed_url;
     // Below code checks if user has given his desired alias for shorturl or not. If they have, check if it exists in the db and return an error message if applicable
     // Otherwise generate a random 5-letter alias, hash it and check if it exists in the db. If it does, repeat the process until it doesn't :)
+    if (!long_url) {
+        return res.status(400).send('Bad Request');
+    }
     if (!short_url_pref) {
         do {
             short_url_pref = generateAlias();
