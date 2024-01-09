@@ -1,4 +1,7 @@
 const mariadb = require("mariadb");
+const dotenv = require("dotenv");
+dotenv.config({ path: './.env' });
+
 const pool = mariadb.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -6,6 +9,7 @@ const pool = mariadb.createPool({
     database: process.env.DB_NAME,
     connectionLimit: 5
 });
+
 
 // Get connection and check for errors
 

@@ -1,23 +1,18 @@
 const express = require("express");
-const dotenv = require("dotenv");
+
 
 const hashIt = require("./hashing");
 const redirect = require("./routes/redirect");
 const app = express();
 
-dotenv.config({ path: './.env' })
 const PORT = process.env.PORT;
 
 //Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static("./public"));
 
 // Routes
-
-app.get('/', (req, res) => {
-    res.status(200).json({success: true, data: "empty"});
-})
-
 app.use("*", redirect);
 
 // console.log(hashIt("test"));
