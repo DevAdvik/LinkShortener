@@ -1,5 +1,5 @@
 const express = require("express");
-const hashIt = require("../hashing");
+const hashIt = require("../helpers/hashing");
 const pool = require("../helpers/database");
 const router = express.Router();
 

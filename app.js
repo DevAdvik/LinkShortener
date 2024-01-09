@@ -1,7 +1,5 @@
 const express = require("express");
-
-
-const hashIt = require("./hashing");
+const createURL = require("./routes/createShortUrl");
 const redirect = require("./routes/redirect");
 const app = express();
 
@@ -13,6 +11,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static("./public"));
 
 // Routes
+app.use("/createShortUrl", createURL);
 app.use("*", redirect);
 
 // console.log(hashIt("test"));
