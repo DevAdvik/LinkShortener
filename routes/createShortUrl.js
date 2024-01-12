@@ -30,13 +30,16 @@ router.post("/", async (req, res) => {
     }
     // After all the verification, insert the hashed shorturl and longurl in the db.
     try {
+        if (!long_url.startsWith("https://") || (!long_url.startsWith("http://") || (!long_url.startsWith("mailto:")))) {
+            long_url = "http://" + long_url;
+        }
         const create_url_query = `INSERT INTO Shortlinks.urlinfo (redirect_url, short_url) VALUES(?, ?)`;
         const dbCreateResponse = await pool.query(create_url_query, [long_url, hashed_url]);
         console.log(typeof dbCreateResponse, dbCreateResponse);
-        res.status(200).json({ success: true, long_url: long_url, redirect_link: `http://localhost:5000/${short_url_pref}` });
+        res.status(200).json({ success: true, long_url: long_url, redirect_link: `http://${process.env.DOMAIN}/${short_url_pref}` });
         console.log(`New ziplink!`);
     } catch (error) {
-        res.status(500).json({success: false, reason:error});
+        res.status(500).json({ success: false, reason: error });
         console.error("Error occured!\n", error);
     }
 })
