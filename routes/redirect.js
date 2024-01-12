@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
             console.log(updateResponse);
             return res.status(302).redirect(redirect_url);
         } else {
-            res.status(200).json(rows);
+            res.status(200).send("This shorturl doesn't exists!");
         }
     } catch (error) {
         res.status(400).send("Error: Can't find shit now");

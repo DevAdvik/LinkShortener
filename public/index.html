@@ -14,9 +14,9 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat&family=Salsa&family=Space+Grotesk:wght@300;400;500&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Space+Grotesk:wght@300;400;500&display=swap"
         rel="stylesheet">
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 </head>
 
 <body>
@@ -26,14 +26,39 @@
             <p>Zipping Through the Web with ZipLink!</p>
         </header>
 
+        <!-- <dotlottie-player
+            src="https://lottie.host/d538f210-2161-446c-a3b8-8fa85ac49c45/Bg9RK2TMis.json" background="transparent"
+            speed="1" style="width: 300px; height: 300px" direction="1" mode="normal" loop autoplay></dotlottie-player> -->
+        <dotlottie-player class="lottieLoading"
+            src="https://lottie.host/948f1155-89fd-4e63-a8a8-b20ac02bb43c/q2nK23DITS.json" background="transparent"
+            speed="1" direction="1" mode="normal" loop autoplay></dotlottie-player>
         <div class="box">
-            <label for="longUrl">Enter the original URL: <i class="fa-solid fa-asterisk"></i></label>
+            <label for="longUrl"><i class="fa-solid fa-link"></i> Enter the original URL: <i
+                    class="fa-solid fa-asterisk"></i></label>
             <input type="url" id="longUrl" name="long_url" placeholder="https://example.com/very-very-very-long-url">
+            <div class="urlError"></div>
             <label for="shortUrl">Enter URL alias:</label>
             <input type="text" id="shortUrl" name="short_url_pref" placeholder="myname123">
             <p><i class="fa-solid fa-wand-magic-sparkles fInfo"></i> Make your short URL more personalized by custom
                 alias!</p>
-            <button type="submit" class="submitBtn" title="Click to get your shortlink!">Get shortlink!</button>
+            <button type="submit" class="submitBtn" title="Click to get your ZipLink!">Get shortlink!</button>
+
+            <div class="resultUrl">
+                <p><i class="fa-solid fa-link"></i> Your Long URL:</p>
+                <input type="url" id="originalLongUrl" value="https://example.com/very-long-url" disabled>
+                <p><i class="fa-solid fa-wand-magic-sparkles fInfo"></i> ZipLink:</p>
+                <input type="text" id="genShortLink" value="https://shortlink.com/abcde" disabled>
+                <div class="resultBtns">
+                    <button type="button" data-btntype="copyUrl" class="copyShortUrl">Copy ZipLink</button>
+                    <div class="getQrCode">
+                        <img src="" data-btntype="qrCodeImage" alt="QR Code for Shortlink">
+                        <button type="button" class="qrcode" data-btntype="qrCodeBtn">QR Code</button>
+                    </div>
+                    <button type="button" class="createAnother" data-btntype="anotherZiplink"
+                        title="Create another ZipLink!">Create another
+                        shortlink</button>
+                </div>
+            </div>
         </div>
     </div>
     <footer>
@@ -44,8 +69,14 @@
         <div class="theme">
             <p>Appearance</p>
             <div class="themeSelector">
-                <div class="light singleTheme"><i class="fa-regular fa-lightbulb"></i></div>
-                <div class="dark singleTheme activetheme"><i class="fa-solid fa-moon"></i></div>
+                <input type="radio" name="theme" id="lightTheme">
+                <label for="lightTheme">
+                    <div class="light singleTheme"><i class="fa-regular fa-lightbulb"></i></div>
+                </label>
+                <input type="radio" name="theme" id="darkTheme" checked>
+                <label for="darkTheme">
+                    <div class="dark singleTheme"><i class="fa-solid fa-moon"></i></div>
+                </label>
             </div>
         </div>
         <p class="copyright">Copyright Reserved &copy; 2024</p>

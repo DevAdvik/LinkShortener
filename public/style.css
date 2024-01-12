@@ -2,10 +2,30 @@
     --light-text: #ffffff;
     --dark-text: #1C1B1E;
     --bg-light: #e6e6e6;
-    --bg-dark: #19181b;
-    --little-dark: #25242A;
+    --bg-dark: #0d0f15;
+    --little-dark: #1f232a;
     --flashy-blue: #2764d6;
     --flashy-text: #4885f4;
+}
+
+@font-face {
+    font-family: 'Cailyne';
+    src: url('Fonts/Cailyne.ttf');
+}
+
+@font-face {
+    font-family: 'Catallina';
+    src: url('Fonts/Catallina.otf');
+}
+
+@font-face {
+    font-family: 'ScentSmile';
+    src: url('Fonts/areminiscentsmile-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'NewYork';
+    src: url('Fonts/NewYork\ PERSONAL\ USE.otf');
 }
 
 html {
@@ -23,7 +43,6 @@ html {
     background-color: var(--bg-dark);
     min-height: 100vh;
     color: var(--light-text);
-    font-family: 'Poppins', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,7 +50,7 @@ html {
 }
 
 header {
-    font-family: 'Salsa', sans-serif;
+    font-family: 'Cailyne', 'Space Grotesk', sans-serif;
     text-align: center;
     padding: 20px;
     background-color: var(--flashy-blue);
@@ -41,10 +60,13 @@ header {
 
     & p {
         letter-spacing: normal;
+        margin-top: 5px;
+        font-family: 'Catallina', sans-serif;
     }
 }
 
 .box {
+    position: relative;
     font-family: 'Montserrat', sans-serif;
     /* border: 1px solid; */
     border-radius: 12px;
@@ -59,6 +81,7 @@ header {
     max-width: 650px;
     flex-grow: 1;
     background-color: var(--little-dark);
+    overflow: hidden;
 
     & .fa-asterisk {
         color: crimson;
@@ -87,14 +110,127 @@ header {
         padding: 5px;
         align-self: flex-start;
         margin-left: calc(5% - 5px);
+        margin-bottom: 5px;
     }
+}
+
+.lottieLoading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: 120px;
+    height: 120px;
+    display: none;
+}
+
+.lottieLoading+.loading {
+    filter: blur(3px);
+}
+
+.resultUrl {
+    position: absolute;
+    right: -100vw;
+    top: 50%;
+    transform: translate(50%, -50%);
+    background-color: #1e1e22;
+    height: 90%;
+    z-index: 30;
+    border: 1px solid;
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 90%;
+    max-width: 600px;
+    transition: .3s;
+
+    & input {
+        font-family: 'Space Grotesk', sans-serif;
+    }
+
+    & p {
+        margin-bottom: 10px;
+        font-family: 'Montserrat', sans-serif;
+    }
+}
+
+.resultBtns {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid; */
+
+    & button {
+        padding: 12px 20px;
+        border-radius: 25px;
+        background-color: var(--light-text);
+        border: none;
+        color: var(--dark-text);
+        outline: transparent;
+        cursor: pointer;
+        transition: .2s;
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.1rem;
+        max-width: 90%;
+        word-wrap: break-word;
+        flex-grow: 1;
+    }
+
+    & button:nth-child(3) {
+        background-color: var(--flashy-blue);
+        color: var(--bg-light);
+        /* flex-grow: 1; */
+    }
+
+    .getQrCode {
+        position: relative;
+        text-align: center;
+
+        & img {
+            position: absolute;
+            display: none;
+            top: 105%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 10px solid white;
+            border-radius: 8px;
+        }
+    }
+}
+
+
+.urlError {
+    color: orangered;
+    margin-bottom: 20px;
+    display: none;
+    position: absolute;
+    top: 20px;
+    max-width: 90%;
+    right: 15px;
+    background-color: var(--bg-dark);
+    border-radius: 8px;
+    padding: 15px 15px;
+    font-family: 'Space Grotesk', sans-serif;
+    text-align: center;
+}
+
+.showBlock {
+    display: block;
 }
 
 .box>p {
     color: var(--flashy-text);
     font-family: 'Space Grotesk', sans-serif;
     text-align: center;
-    margin: 10px 0px 15px 0px;
+    margin: 10px 0px 20px 0px;
     width: 90%;
     cursor: help;
 }
@@ -123,7 +259,7 @@ header {
         transform: scale(1.02);
 
         &::before {
-            transform: translate(50%, -50%);
+            transform: translate(51%, -50%);
             border-radius: 0;
         }
 
@@ -149,7 +285,6 @@ header {
     width: 100%;
     height: 200px;
     left: -100%;
-    mix-blend-mode: indifference;
     z-index: -1;
 }
 
@@ -163,7 +298,6 @@ header {
     width: 100%;
     height: 200px;
     right: -100%;
-    mix-blend-mode: indifference;
     z-index: -1;
 }
 
@@ -182,13 +316,15 @@ footer {
     padding: 40px;
     padding-bottom: 90px;
     color: var(--bg-light);
-    font-family: 'Space Grotesk', sans-serif;
+    /* font-family: 'Space Grotesk', sans-serif; */
+    font-family: 'Catallina', sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     .logo {
         text-align: center;
+        /* font-family: 'Cailyne', sans-serif; */
 
         & p {
             letter-spacing: 5px;
@@ -207,7 +343,7 @@ footer {
 .theme {
     width: fit-content;
     text-align: left;
-    
+
     & p {
         padding-left: 2px;
         font-size: 1rem;
@@ -220,24 +356,27 @@ footer {
     margin-top: 15px;
     gap: 15px;
     font-size: 1.1rem;
-    
-    & .singleTheme {
+
+    & input {
+        display: none;
+    }
+
+    & input:checked+label>div {
+        background-color: var(--flashy-blue);
+    }
+
+    .singleTheme {
         border: 1px solid;
         padding: 8px 14px;
         border-radius: 8px;
         transition: .2s;
         cursor: pointer;
-        
+
         &:hover {
             background-color: var(--bg-light);
             color: var(--dark-text);
         }
     }
-}
-
-.activetheme {
-    background-color: var(--flashy-blue);
-    
 }
 
 .copyright {
@@ -248,7 +387,7 @@ footer {
     transform: translateX(-50%);
 }
 
-@media screen and (min-width: 600px){
+@media screen and (min-width: 600px) {
     footer {
         padding-bottom: 50px;
     }
@@ -256,15 +395,16 @@ footer {
 
 @media screen and (min-width: 800px) {
     .box {
-        
+
         & label {
             font-size: 1.05rem;
         }
-        
+
         & input {
             font-size: 0.9rem;
         }
     }
+
     footer {
         padding-bottom: 40px;
     }
