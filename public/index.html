@@ -26,16 +26,16 @@
             <p>Zipping Through the Web with ZipLink!</p>
         </header>
 
-        <!-- <dotlottie-player
-            src="https://lottie.host/d538f210-2161-446c-a3b8-8fa85ac49c45/Bg9RK2TMis.json" background="transparent"
-            speed="1" style="width: 300px; height: 300px" direction="1" mode="normal" loop autoplay></dotlottie-player> -->
         <dotlottie-player class="lottieLoading"
             src="https://lottie.host/948f1155-89fd-4e63-a8a8-b20ac02bb43c/q2nK23DITS.json" background="transparent"
             speed="1" direction="1" mode="normal" loop autoplay></dotlottie-player>
+
         <div class="box">
-            <label for="longUrl"><i class="fa-solid fa-link"></i> Enter the original URL: <i
+
+            <label for="longUrl" title="Required"><i class="fa-solid fa-link"></i> Enter the original URL: <i
                     class="fa-solid fa-asterisk"></i></label>
-            <input type="url" id="longUrl" name="long_url" placeholder="https://example.com/very-very-very-long-url">
+            <input type="url" required id="longUrl" name="long_url"
+                placeholder="https://example.com/very-very-very-long-url">
             <div class="urlError"></div>
             <label for="shortUrl">Enter URL alias:</label>
             <input type="text" id="shortUrl" name="short_url_pref" placeholder="myname123">
