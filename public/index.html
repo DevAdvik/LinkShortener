@@ -22,7 +22,7 @@
 <body>
     <div class="main">
         <header>
-            <h1>ZipLink</h1>
+            <h1><i class="fa-solid fa-paperclip"></i> ZipLink</h1>
             <p>Zipping Through the Web with ZipLink!</p>
         </header>
 
@@ -31,7 +31,7 @@
             speed="1" direction="1" mode="normal" loop autoplay></dotlottie-player>
 
         <div class="box">
-
+            <!-- URL Creation Start -->
             <label for="longUrl" title="Required"><i class="fa-solid fa-link"></i> Enter the original URL: <i
                     class="fa-solid fa-asterisk"></i></label>
             <input type="url" required id="longUrl" name="long_url"
@@ -42,7 +42,8 @@
             <p><i class="fa-solid fa-wand-magic-sparkles fInfo"></i> Make your short URL more personalized by custom
                 alias!</p>
             <button type="submit" class="submitBtn" title="Click to get your ZipLink!">Get shortlink!</button>
-
+            <!-- URL Creation End -->
+            <!-- Result URL Display -->
             <div class="resultUrl">
                 <p><i class="fa-solid fa-link"></i> Your Long URL:</p>
                 <input type="url" id="originalLongUrl" value="https://example.com/very-long-url" disabled>
@@ -63,7 +64,7 @@
     </div>
     <footer>
         <div class="logo">
-            <img src="media/ziplinkhd.png" class="footer-logo" alt="ZipLink Logo" title="ZipLink Logo">
+            <i class="fa-solid fa-paperclip footer-logo" title="ZipLink!"></i>
             <p>ZIPLINK</p>
         </div>
         <div class="theme">
@@ -83,6 +84,13 @@
     </footer>
 
     <script src="script.js" async defer></script>
+    <script src="theme.js" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-color/2.1.2/jquery.color.min.js"
+        integrity="sha512-VjRpiWhUqdNa9bwBV7LnlG8CwsCVPenFyOQTSRTOGHw/tjtME96zthh0Vv9Itf3i8w4CkUrdYaS6+dAt1m1YXQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 
 </html>
