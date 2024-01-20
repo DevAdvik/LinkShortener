@@ -99,7 +99,7 @@ resultBtns.addEventListener("click", (ev) => {
     switch (ev.target.dataset.btntype) {
         case "copyUrl":
             navigator.clipboard.writeText(resultZipLink.value);
-            copyUrl.textContent = "ZipLink copied!";
+            copyUrl.textContent = "Copied!";
             setTimeout(() => {
                 copyUrl.textContent = "Copy Ziplink!";
             }, 1100);

@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
             res.status(200).send("This shorturl doesn't exists!");
         }
     } catch (error) {
-        res.status(400).send("Error: Can't find shit now");
+        res.status(400).send("Error: Can't find stuff now");
         console.log(error);
     }
 })

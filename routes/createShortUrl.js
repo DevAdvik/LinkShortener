@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
             return res.status(200).json({ success: false, reason: "Shortlink with this alias already exists!" });
         }
     }
-    
+
     // After all the verification, insert the hashed shorturl and longurl in the db.
 
     try {
@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
         const create_url_query = `INSERT INTO Shortlinks.urlinfo (redirect_url, short_url) VALUES(?, ?)`;
         const dbCreateResponse = await pool.query(create_url_query, [long_url, hashed_url]);
         console.log(typeof dbCreateResponse, dbCreateResponse);
-        res.status(200).json({ success: true, long_url: long_url, redirect_link: `http://link.advik.dev/${short_url_pref}` });
+        res.status(200).json({ success: true, long_url: long_url, redirect_link: `https://link.advik.dev/${short_url_pref}` });
         console.log(`New ziplink!`);
     } catch (error) {
         res.status(500).json({ success: false, reason: error });
