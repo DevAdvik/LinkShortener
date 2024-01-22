@@ -10,25 +10,22 @@ const queries = {
 }
 
 router.get("/", (req, res) => {
-    console.log(req);
     if (req.session.loggedIn) {
-        console.log("Yes");
         return res.status(200).json({success: false, message: "User is already logged in!"})
     }
     res.sendFile(path.join(__dirname, "..", "public", "signup.html"));
 })
 
 router.post('/', async (req, res) => {
-    console.log(req.body);
     if (req.session.loggedIn) {
-        return res.status(200).json({ success: false, message: "User is already logged in!", errorType: "UserAlreadyLoggedIn" });
+        return res.status(200).json({ success: false, message: "User is already logged in!", errorType: "LoggedIn", username: req.session.username });
     }
     const username = req.body.username;
     const password = req.body.password;
     const result = await database.query(queries.doesUserExists, [username]);
 
     if (result.rowCount == 1) {
-        return res.status(200).json({ success: false, message: "User already exists!", errorType: "UsernamwConflict" });
+        return res.status(200).json({ success: false, message: "User already exists!", errorType: "UsernameConflict" });
     }
 
     const hash = await bcrypt.hash(password, 10);

@@ -18,7 +18,7 @@ router.get("/", (req, res) => {
 router.post('/', async (req, res) => {
     if (req.session.loggedIn) {
         console.log("Logged in user request");
-        return res.status(303).json({ success: true, message: "User already logged in!", username: req.session.username });
+        return res.status(303).json({ success: false, message: "User already logged in!", errorType: "LoggedIn", username: req.session.username });
     }
 
     const [username, password] = [req.body.username, req.body.password];
@@ -31,14 +31,12 @@ router.post('/', async (req, res) => {
         if (result) {
             req.session.username = username;
             req.session.loggedIn = true;
-            console.log("User logged in successfully!");
             res.status(200).json({ success: true, message: "User logged in successfully!" });
         } else {
-            console.log("Invalid password!");
             res.status(401).json({ success: false, message: "Invalid password!", errorType: "InvalidPassword" });
         }
     } else {
-        res.status(401).json({ success: false, message: "User doesn't exists!", erorType: "InvalidUser" });
+        res.status(401).json({ success: false, message: "User doesn't exists!", errorType: "InvalidUser" });
     }
 })
 

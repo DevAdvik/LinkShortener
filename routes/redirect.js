@@ -21,8 +21,8 @@ router.get("/", async (req, res) => {
             res.status(302).redirect("https://error.advik.dev");
         }
     } catch (error) {
-        res.status(400).send("Error: Something happened, I dunno what\n"+error);
-        console.log(error);
+        res.status(400).send("Error: Something happened, I dunno what\n" + error);
+        console.log(error + "\n redirect.js error");
     }
 })
 
