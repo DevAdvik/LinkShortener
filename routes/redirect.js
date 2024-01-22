@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
             console.log(updateResponse);
             return res.status(302).redirect(redirect_url);
         } else {
-            res.status(200).send("This shorturl doesn't exists!");
+            res.status(302).redirect("https://error.advik.dev");
         }
     } catch (error) {
         res.status(400).send("Error: Can't find stuff now");

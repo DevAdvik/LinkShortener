@@ -21,6 +21,7 @@ submit.addEventListener("click", async (ev) => {
     ev.preventDefault();
 
     let originalUrl = longUrl.value.trim();
+    let short_url_pref = alias.value;
     if (!originalUrl) {
         errorText.textContent = "Error: Please enter a link to shorten!";
         errorText.classList.add("showBlock");
@@ -28,15 +29,21 @@ submit.addEventListener("click", async (ev) => {
         return;
     }
     if (!urlPattern.test(originalUrl)) {
-        errorText.textContent = "Errro: Please enter a valid link!";
+        errorText.textContent = "Error: Please enter a valid link!";
         errorText.classList.add("showBlock");
         return;
+    }
+    if (short_url_pref) {
+        if (!short_url_pref.match(/^[a-zA-Z0-9]+$/)) {
+            errorText.textContent = "Error: Please enter only alphabets and numbers in alias!";
+            errorText.classList.add("showBlock");
+            return;
+        }
     }
 
     loadingIcon.classList.add("showBlock");
     fullBox.classList.add("loading");
 
-    let short_url_pref = alias.value;
     let data;
     if (short_url_pref) {
         data = { long_url: originalUrl, short_url_pref: short_url_pref };

@@ -154,6 +154,10 @@ header {
     max-width: 600px;
     transition: .3s;
 
+    #genShortLink {
+        color: #4885f4;
+    }
+
     & input {
         font-family: 'Space Grotesk', sans-serif;
     }
@@ -392,6 +396,7 @@ footer {
     left: 50%;
     transform: translateX(-50%);
     font-size: 0.8rem;
+    text-align: center;
 }
 
 @media screen and (min-width: 600px) {
