@@ -9,6 +9,8 @@ const redirect = require("./routes/redirect");
 const signup = require("./routes/signup");
 const login = require("./routes/login");
 const logout = require("./routes/logout");
+const dashboard = require("./routes/dashboard");
+const deleteLink = require("./routes/deleteZipLink");
 
 // Importing helpers
 const db = require("./helpers/database");
@@ -39,6 +41,8 @@ app.use("/createShortUrl", createURL);
 app.use("/signup", signup);
 app.use("/login", login);
 app.use("/logout", logout);
+app.use("/dashboard", dashboard);
+app.use("/delete", deleteLink);
 app.use("*", redirect);
 
 
