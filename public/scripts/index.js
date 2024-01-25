@@ -46,7 +46,7 @@ submit.addEventListener("click", async (ev) => {
 
     let data;
     if (short_url_pref) {
-        data = { long_url: originalUrl, short_url_pref: short_url_pref };
+        data = { long_url: originalUrl, alias: short_url_pref };
     } else {
         data = { long_url: originalUrl };
     }

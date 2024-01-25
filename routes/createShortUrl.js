@@ -5,6 +5,8 @@ const checkInDB = require("../helpers/existsInDB")
 
 const router = express.Router();
 
+const create_url_query = `INSERT INTO public.shortlinks (redirect_url, ziplink, created_by) VALUES($1, $2, $3)`;
+
 router.post("/", async (req, res) => {
     let { long_url, alias } = req.body;
     console.log("Request received!");
@@ -31,7 +33,7 @@ router.post("/", async (req, res) => {
         if (!(long_url.startsWith("https://")) && !(long_url.startsWith("http://")) && !(long_url.startsWith("mailto:"))) {
             long_url = "http://" + long_url;
         }
-        const create_url_query = `INSERT INTO public.shortlinks (redirect_url, ziplink, created_by) VALUES($1, $2, $3)`;
+        
         const username = req.session.username || 'guest';
         const dbCreateResponse = await pool.query(create_url_query, [long_url, alias, username]);
         if (dbCreateResponse.rowCount === 1) {

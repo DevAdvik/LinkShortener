@@ -15,7 +15,6 @@ router.get("/", async (req, res) => {
         if (dbResponse.rowCount === 1) {
             const { redirect_url, id } = dbResponse.rows[0];
             const updateResponse = await pool.query(updateCount, [id]);
-            console.log(updateResponse);
             return res.status(302).redirect(redirect_url);
         } else {
             res.status(302).redirect("https://error.advik.dev");

@@ -58,6 +58,7 @@ submit.addEventListener("click", async (ev) => {
     if (respJson.success) {
         errorText.style.color = 'springgreen';
         showError(`Signed up successfully as ${data.username}!`);
+        window.location.replace("/dashboard");
     } else {
         if (respJson.errorType === "UsernameConflict") {
             showError("Error: Username already exists!");

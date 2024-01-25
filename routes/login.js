@@ -10,7 +10,7 @@ const queries = {
 
 router.get("/", (req, res) => {
     if (req.session.loggedIn) {
-        return res.status(303).json({ success: false, message: "User already logged in!" });
+        return res.status(303).redirect("/dashboard");
     }
     res.sendFile(path.join(__dirname, "..", "public", "login.html"));
 })

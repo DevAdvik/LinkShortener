@@ -4,7 +4,7 @@ const db = require("../helpers/database");
 const router = express.Router();
 
 const queries = {
-    getZipLinks: 'SELECT redirect_url, created_at, ziplink, count FROM public.shortlinks WHERE  created_by = $1'
+    getZipLinks: 'SELECT id, redirect_url, created_at, ziplink, count FROM public.shortlinks WHERE  created_by = $1'
 }
 
 router.get("/", (req, res) => {

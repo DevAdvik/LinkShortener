@@ -11,14 +11,14 @@ const queries = {
 
 router.get("/", (req, res) => {
     if (req.session.loggedIn) {
-        return res.status(200).json({success: false, message: "User is already logged in!"})
+        return res.status(303).redirect("/dashboard");
     }
     res.sendFile(path.join(__dirname, "..", "public", "signup.html"));
 })
 
 router.post('/', async (req, res) => {
     if (req.session.loggedIn) {
-        return res.status(200).json({ success: false, message: "User is already logged in!", errorType: "LoggedIn", username: req.session.username });
+        return res.status(303).json({ success: false, message: "User is already logged in!", errorType: "LoggedIn", username: req.session.username });
     }
     const username = req.body.username;
     const password = req.body.password;

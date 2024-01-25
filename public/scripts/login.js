@@ -36,10 +36,10 @@ submit.addEventListener("click", async (ev) => {
         body: JSON.stringify(data)
     })
     const respJson = await response.json();
-    console.log(respJson);
     if (respJson.success) {
         errorText.style.color = 'springgreen';
-        showError(`Logged in successfully as ${username}!`);
+        showError(`Logged in successfully as ${data.username}!`);
+        window.location.replace("/dashboard");
     } else {
         if (respJson.errorType === 'InvalidPassword') {
             showError("Invalid Password!");
