@@ -1,5 +1,7 @@
+const root = document.querySelector(":root");
+
 let singleZipLink = `
-<div class="singleZipLink" id="singleZipLink_#id#">
+<div class="singleZipLink unfocus" id="singleZipLink_#id#">
     <div class="leftCheck">
         <input class="input-box" id="ziplink_#id#" type="checkbox" />
         <label class="customCheckBox" for="ziplink_#id#"><span>
@@ -27,11 +29,11 @@ let singleZipLink = `
                 <p>Click Count: <span class="clickCount">#click_count#</span></p>
             </div>
             <div class="singleRow">
-                <p class="editZipLink zipEdit"><i class="fa-solid fa-pen-nib"></i> Edit ZipLink</p>
-                <p class="editOriginalLink zipEdit"><i class="fa-solid fa-pen-to-square"></i> Edit Original URL</p>
+                <p class="zipEdit" data-action="edit"><i class="fa-solid fa-pen-nib"></i> Edit ZipLink</p>
+                <p class="zipEdit" data-action="redirectChange"><i class="fa-solid fa-pen-to-square"></i> Edit Original URL</p>
             </div>
             <div class="singleRow">
-                <p class="deleteZipLink zipEdit"><i class="fa-solid fa-trash-can"></i> Delete ZipLink</p>
+                <p class="zipEdit" data-action="delete"><i class="fa-solid fa-trash-can"></i> Delete ZipLink</p>
             </div>
         </div>
     </div>
@@ -64,23 +66,51 @@ function renderLinks(array) {
         $(newElem).insertBefore(".createNew");
     });
     attachHandlers();
+    const dropdownHeight = document.querySelector(".dropdown-options").scrollHeight;
+    root.style.setProperty("--dropdown-menu-height", `${dropdownHeight + 10}px`);
     $(".lottieLoading").removeClass("activeLottie");
+
 }
 
+function showInfoPopup(text) {
+    $(".popupInfo").text(text);
+    $(".popupInfo").css({ right: "10px" });
+    setTimeout(() => { $(".popupInfo").css({ right: "-100%" }) }, 1500);
+}
+
+
+let currentChecked;
 function attachHandlers() {
-    $(".singleZlShort").click(function (e) { 
-        navigator.clipboard.writeText(this.textContent)
+    // Turn off all previous event listeners so as to re-assign event listeners to everylink
+    $(".singleZlShort").off("click");
+    $(".zipEdit").off("click");
+    $(".dropdown-check").off("click");
+
+    $(".singleZlShort").click(function (e) {
+        navigator.clipboard.writeText(this.textContent);
+        showInfoPopup("Ziplink Copied!");
     });
-    
-    $(".zipEdit").click(function (e) { 
+
+    // Since I'm setting a margin bottom to display the dropdown, need to calculate the height of the dropdown
+    $(window).on("resize", function (e) {
+        const dropdownHeight = document.querySelector(".dropdown-options").scrollHeight;
+        root.style.setProperty("--dropdown-menu-height", `${dropdownHeight + 10}px`);
+    })
+
+    $(".zipEdit").click(function (e) {
         e.preventDefault();
-        console.log(this);
-        console.log($(this).closest(".singleZipLink"));
+        const clickedId = $(this).closest(".singleZipLink")[0].attributes.id;
+        handleZipEdit(clickedId, this.dataset.action);
     });
-    $(".dropdown-check").click (function (e) {
-        if ($(this).is(":checked")) {
-            console.log("Checked!");
+
+    $(".dropdown-check").click(function (e) {
+        if (currentChecked === this) {
             $(this).prop("checked", false);
+            currentChecked = '';
+        } else {
+            currentChecked = this;
         }
     })
+
+
 }

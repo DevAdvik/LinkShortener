@@ -11,6 +11,7 @@ const login = require("./routes/login");
 const logout = require("./routes/logout");
 const dashboard = require("./routes/dashboard");
 const deleteLink = require("./routes/deleteZipLink");
+const editData = require("./routes/editZipLink");
 
 // Importing helpers
 const db = require("./helpers/database");
@@ -43,6 +44,7 @@ app.use("/login", login);
 app.use("/logout", logout);
 app.use("/dashboard", dashboard);
 app.use("/delete", deleteLink);
+app.use("/edit", editData);
 app.use("*", redirect);
 
 

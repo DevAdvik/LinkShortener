@@ -141,6 +141,7 @@ header {
 }
 
 .ziplinks {
+    overflow: hidden;
     position: relative;
     font-family: 'Space Grotesk', sans-serif;
     padding: 15px;
@@ -260,20 +261,21 @@ header {
     transition: .3s;
 
     .links {
-        font-size: 0.8rem;
         /* border: 1px solid; */
         flex-grow: 1;
         overflow: hidden;
 
         .singleZlShort {
-            margin-bottom: 5px;
+            margin-bottom: 6px;
             color: var(--flashy-text);
             text-decoration: underline;
             cursor: pointer;
+            /* border: 1px solid; */
+            width: fit-content;
         }
 
         .singleZlLong {
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             /* border: 1px solid; */
             max-width: 100%;
             width: fit-content;
@@ -284,10 +286,10 @@ header {
     }
 
     .clicks {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         text-align: center;
         display: none;
-        margin-right: 5px;
+        margin-right: 9px;
 
         .clickCount {
             color: var(--flashy-text);
@@ -295,8 +297,11 @@ header {
     }
 
     .dropdown-menu {
+        /* position: relative; */
+
         .dropdown-icon {
             transition: .2s;
+            font-size: 1.2rem;
             cursor: pointer;
         }
 
@@ -393,13 +398,105 @@ header {
     }
 }
 
+.editBox {
+    position: absolute;
+    border: 1px solid;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, .5);
+    display: flex;
+    scale: 0;
+    opacity: 0;
+    transform-origin: left bottom;
+    transition: scale .3s, opacity .15s;
+    flex-direction: column;
+    z-index: 100;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    gap: 5px;
+    background-color: var(--link-sec-bg);
+    color: var(--text-color);
+    width: 70%;
+    z-index: 10000;
+
+    & label {
+        font-weight: 500;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+
+    #userEdit {
+        background-color: var(--selected-bg);
+        border: 1px solid var(--text-color);
+        padding: 10px;
+        border-radius: 5px;
+        /* margin: 10px 0px; */
+        margin-bottom: 10px;
+        outline: transparent;
+        color: var(--text-color);
+
+        &:focus {
+            border: 1px solid var(--flashy-color);
+        }
+    }
+
+    .saveCancelBtns {
+        /* border: 1px solid; */
+        display: flex;
+        justify-content: space-around;
+
+        & button {
+            padding: 10px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: .2s;
+
+            &:active {
+                scale: 0.98;
+            }
+        }
+
+        .cancel {
+            background-color: var(--sec-bg);
+            color: var(--flashy-text);
+            border: 1.5px solid;
+
+            &:hover {
+                background-color: var(--link-sec-bg);
+            }
+        }
+
+        .confirmChange {
+            background-color: var(--flashy-text);
+            border: none;
+
+            &:hover {
+                background-color: var(--flashy-color);
+                color: var(--text-color);
+            }
+        }
+    }
+}
+
+.popupInfo {
+    /* border: 1px solid; */
+    padding: 10px 15px;
+    border-radius: 5px;
+    position: absolute;
+    right: -100%;
+    transition: .3s ease-out;
+    top: 10px;
+    background-color: var(--flashy-color);
+    color: var(--text-color);
+}
+
 
 @media screen and (min-width: 400px) {
     .singleZipLink .clicks {
         display: block;
     }
 }
-
 
 
 

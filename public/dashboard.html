@@ -55,14 +55,25 @@
             src="https://lottie.host/948f1155-89fd-4e63-a8a8-b20ac02bb43c/q2nK23DITS.json" background="transparent"
             speed="1" direction="1" mode="normal" loop autoplay></dotlottie-player>
         <div class="ziplinks">
+            <div class="popupInfo">Yo man</div>
             <h2>Your ZipLinks</h2>
             <div class="createNew">
-                <p class="newZipLink"><i class="fa-solid fa-plus"></i> Create new ZipLink</p>
+                <p class="newZipLink unfocus"><i class="fa-solid fa-plus"></i> Create new ZipLink</p>
+            </div>
+
+            <div class="editBox">
+                <label for="userEdit">Edit ZipLink:</label>
+                <input type="text" id="userEdit">
+                <div class="saveCancelBtns">
+                    <button type="button" class="cancel">Cancel</button>
+                    <button type="button" class="confirmChange">Save</button>
+                </div>
             </div>
         </div>
     </div>
 
     <script src="scripts/dashboard.js" async defer></script>
+    <script src="scripts/handleZipEdits.js"></script>
 </body>
 
 </html>
